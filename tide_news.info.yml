@@ -1,0 +1,13 @@
+name: News
+description: 'Provides News content type and related configuration. '
+type: module
+core: 8.x
+version: 8.x-0.1
+dependencies:
+  - field
+  - menu_ui
+  - node
+  - path
+  - text
+  - user
+  - tide:tide_core
