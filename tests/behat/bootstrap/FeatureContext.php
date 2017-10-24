@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\DrupalExtension\Context\DrupalContext;
+use Drupal\taxonomy\Entity\Vocabulary;
 
 /**
  * Features context for testing Test module.
