@@ -10,5 +10,6 @@ dependencies:
   - node
   - path
   - text
+  - taxonomy
   - user
   - tide:tide_core

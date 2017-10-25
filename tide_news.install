@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * @file
+ * Installation functions for Tide News.
+ */
+
+use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\Entity\Vocabulary;
+
+/**
+ * Implements hook_install().
+ */
+function tide_news_install() {
+  tide_news_update_8001();
+}
+
+/**
+ * Create News Category default terms.
+ */
+function tide_news_update_8001() {
+  /** @var \Drupal\Core\Extension\ModuleInstallerInterface $module_installer */
+  $module_installer = \Drupal::service('module_installer');
+  $module_installer->install(['taxonomy']);
+
+  // Ensure the News Category vocabulary exist.
+  $vid = 'news_category';
+  if (!Vocabulary::load($vid)) {
+    Vocabulary::create([
+      'vid' => $vid,
+      'name' => 'News Category',
+      'description' => 'Use news category to group news into categories.',
+    ])->save();
+  }
+
+  // Create default terms [SDPD8-109].
+  $terms = [
+    'General News',
+    'Media Release',
+    'Speech',
+  ];
+  foreach ($terms as $term) {
+    Term::create([
+      'name' => $term,
+      'vid' => $vid,
+      'parent' => [],
+    ])->save();
+  }
+}
