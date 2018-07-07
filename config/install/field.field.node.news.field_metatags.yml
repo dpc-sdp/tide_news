@@ -2,20 +2,21 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_metatags
     - node.type.news
-id: node.news.promote
-field_name: promote
+  module:
+    - metatag
+id: node.news.field_metatags
+field_name: field_metatags
 entity_type: node
 bundle: news
-label: 'Promoted to front page'
+label: Metatags
 description: ''
 required: false
 translatable: true
 default_value:
   -
-    value: 0
+    value: 'a:0:{}'
 default_value_callback: ''
-settings:
-  on_label: 'On'
-  off_label: 'Off'
-field_type: boolean
+settings: {  }
+field_type: metatag

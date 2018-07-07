@@ -1,11 +1,9 @@
 # tide_news
 News content type for Tide distribution
 
-[![CircleCI](https://circleci.com/gh/dpc-sdp/tide_news.svg?style=shield&circle-token=401351ec1dc47267183b8758f741cbf5908aff14)](https://circleci.com/gh/dpc-sdp/tide_news)
+[![CircleCI](https://circleci.com/gh/dpc-sdp/tide_page.svg?style=shield&circle-token=da3182e07ee54535d83a516da52f2025d42f0fb6)](https://circleci.com/gh/dpc-sdp/tide_page)
 
 ## Purpose
 - content type
 - fields
-- blocks
-- views
 - REST module integration, if required
