@@ -11,8 +11,9 @@ use Drupal\workflows\Entity\Workflow;
  * Implements hook_entity_bundle_create().
  */
 function tide_news_entity_bundle_create($entity_type_id, $bundle) {
+  // Enable News in Editorial workflow if workflow module is enabled.
   if ($entity_type_id == 'node' && $bundle == 'news') {
-    // Enable News in Editorial workflow if workflow module is enabled.
+    /** @var \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler */
     $moduleHandler = \Drupal::service('module_handler');
     if ($moduleHandler->moduleExists('workflows')) {
       $editorial_workflow = Workflow::load('editorial');

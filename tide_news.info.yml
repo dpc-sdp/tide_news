@@ -12,13 +12,13 @@ dependencies:
   - drupal:user
   - dpc-sdp:tide_core
   - dpc-sdp:tide_media
-  - dpc-sdp:tide_webform
   - drupal:datetime
   - entity_reference_revisions:entity_reference_revisions
   - field_group:field_group
   - maxlength:maxlength
   - metatag:metatag
   - metatag:metatag_open_graph
+  - paragraphs:paragraphs
   - smart_trim:smart_trim
 config_devel:
   install:
@@ -30,14 +30,16 @@ config_devel:
     - field.field.node.news.field_metatags
     - field.field.node.news.field_news_date
     - field.field.node.news.field_news_intro_text
-    - field.field.node.news.field_show_content_rating
     - field.field.node.news.field_show_related_content
     - field.field.node.news.field_show_social_sharing
     - field.field.node.news.field_related_links
     - field.field.node.news.field_tags
     - field.field.node.news.field_topic
+    - field.field.node.news.scheduled_archiving
+    - field.field.node.news.scheduled_publishing
     - field.storage.node.field_news_date
     - field.storage.news.field_news_intro_text
   optional:
+    - field.field.node.news.field_show_content_rating
     - jsonapi_extras.jsonapi_resource_config.node--news
     - simple_sitemap.bundle_settings.node.news
