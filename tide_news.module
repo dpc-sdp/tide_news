@@ -26,6 +26,9 @@ function tide_news_entity_bundle_create($entity_type_id, $bundle) {
   }
 }
 
+/**
+ * Implements hook_search_api_index_items_alter().
+ */
 function tide_news_search_api_index_items_alter(\Drupal\search_api\IndexInterface $index, array &$items) {
   foreach ($items as $item_id => $item) {
 
@@ -44,7 +47,6 @@ function tide_news_search_api_index_items_alter(\Drupal\search_api\IndexInterfac
     }
   }
 }
-
 
 /**
  * Converts timestamp to RFC-3339 format.
