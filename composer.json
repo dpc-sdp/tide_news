@@ -5,7 +5,7 @@
     "license": "GPL-2.0+",
     "require": {
         "dpc-sdp/tide_core": "dev-master",
-        "dpc-sdp/tide_media": "@dev",
+        "dpc-sdp/tide_media": "dev-feature/SDPA-761-index-grants",
         "drupal/metatag": "^1.5",
         "drupal/paragraphs": "^1.2",
         "drupal/smart_trim": "^1.1"
