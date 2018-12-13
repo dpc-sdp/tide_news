@@ -11,7 +11,7 @@
         "drupal/smart_trim": "^1.1"
     },
     "suggest": {
-        "dpc-sdp/tide_api": "Allows to use Drupal in headless mode",
+        "dpc-sdp/tide_api": "dev-feature/SDPA-761-index-grants",
         "dpc-sdp/tide_webform": "Allows to use questionnaires"
     },
     "repositories": {
