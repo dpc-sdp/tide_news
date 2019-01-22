@@ -9,8 +9,3 @@ News content type for Tide distribution
 - blocks
 - views
 - JSONAPI module integration, if required
-
-# Caveats
-
-Tide News is on the alpha release, use with caution. APIs are likely to change before the stable version, that there will be breaking changes and that we're not supporting it for external production sites at the moment.
-
