@@ -1,5 +1,5 @@
 # Tide News
-Page content type for [Tide](https://github.com/dpc-sdp/tide) distribution for [Drupal 8](https://github.com/dpc-sdp)
+News content type for [Tide](https://github.com/dpc-sdp/tide) distribution for [Drupal 8](https://github.com/dpc-sdp)
 
 Tide is a Drupal 8 distribution focused on delivering an API first, headless Drupal content administration site.
 
@@ -23,10 +23,10 @@ your `composer.json`:
 ```json
 {
   "repositories": {        
-      "dpc-sdp/tide_page": {
+      "dpc-sdp/tide_news": {
           "type": "vcs",
           "no-api": true,
-          "url": "https://github.com/dpc-sdp/tide_page.git"
+          "url": "https://github.com/dpc-sdp/tide_news.git"
       }
   }
 }
@@ -34,7 +34,7 @@ your `composer.json`:
 
 Require this package as any other Composer package:
 ```bash
-composer require dpc/tide_page 
+composer require dpc/tide_news 
 ``` 
 
 ## Support
@@ -61,7 +61,6 @@ To start local development stack:
 - [tide_landing_page](https://github.com/dpc-sdp/tide_landing_page)
 - [tide_media](https://github.com/dpc-sdp/tide_media)     
 - [tide_monsido](https://github.com/dpc-sdp/tide_monsido) 
-- [tide_news](https://github.com/dpc-sdp/tide_news)       
 - [tide_page](https://github.com/dpc-sdp/tide_page)       
 - [tide_search](https://github.com/dpc-sdp/tide_search)   
 - [tide_site](https://github.com/dpc-sdp/tide_site)       
