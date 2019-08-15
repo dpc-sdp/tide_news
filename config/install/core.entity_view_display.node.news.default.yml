@@ -14,8 +14,6 @@ dependencies:
     - field.field.node.news.field_show_social_sharing
     - field.field.node.news.field_tags
     - field.field.node.news.field_topic
-    - field.field.node.news.scheduled_archiving
-    - field.field.node.news.scheduled_publishing
     - node.type.news
   module:
     - datetime
@@ -123,5 +121,3 @@ hidden:
   field_show_content_rating: true
   field_show_related_content: true
   field_show_social_sharing: true
-  scheduled_archiving: true
-  scheduled_publishing: true
