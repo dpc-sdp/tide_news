@@ -24,7 +24,7 @@ function tide_news_install() {
     }
     else {
       $bundles[] = ['entity_type' => 'node', 'bundle' => 'news'];
-        $config->set('bundles', $bundles)->save();
+      $config->set('bundles', $bundles)->save();
     }
   }
 }
