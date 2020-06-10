@@ -9,6 +9,7 @@
  * Implements hook_install().
  */
 function tide_news_install() {
+  // Enable entity type/bundles for use with scheduled transitions.
   if (\Drupal::moduleHandler()->moduleExists('scheduled_transitions')) {
     $config_factory = \Drupal::configFactory();
     $config = $config_factory->getEditable('scheduled_transitions.settings');
