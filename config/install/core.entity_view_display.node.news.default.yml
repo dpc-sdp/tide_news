@@ -73,7 +73,7 @@ content:
     type: datetime_default
     region: content
   field_news_intro_text:
-    weight: 3
+    weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -113,7 +113,7 @@ content:
     type: entity_reference_label
     region: content
   links:
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
