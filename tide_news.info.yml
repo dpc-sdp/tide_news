@@ -27,6 +27,9 @@ config_devel:
     - core.entity_view_display.node.page.default
     - field.field.node.news.body
     - field.field.node.news.field_featured_image
+    - field.field.node.news.field_landing_page_contact
+    - field.field.node.news.field_landing_page_show_contact
+    - field.field.node.news.field_landing_page_summary
     - field.field.node.news.field_metatags
     - field.field.node.news.field_news_date
     - field.field.node.news.field_news_intro_text
