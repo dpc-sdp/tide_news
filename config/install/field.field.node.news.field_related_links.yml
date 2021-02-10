@@ -12,7 +12,7 @@ field_name: field_related_links
 entity_type: node
 bundle: news
 label: 'Related links'
-description: 'Related pages can be linked to prominently from the sidebar.'
+description: ''
 required: false
 translatable: true
 default_value: {  }

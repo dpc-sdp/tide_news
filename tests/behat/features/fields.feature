@@ -3,7 +3,7 @@ Feature: Fields for News content type
 
   Ensure that News content has the expected fields.
 
-  @api
+  @api @javascript
   Scenario: The content type has the expected fields (and labels where we can use them).
     Given I am logged in as a user with the "create news content" permission
     When I visit "node/add/news"
@@ -41,22 +41,22 @@ Feature: Fields for News content type
     And I should see an "input#edit-field-topic-0-target-id" element
     And I should see an "input#edit-field-topic-0-target-id.required" element
 
-    And the "#edit-field-featured-image" element should contain "Featured Image"
-    And I should see an "input#edit-field-featured-image-entity-browser-entity-browser-open-modal" element
+    And I scroll selector "#edit-group-sidebar" into view
+    And I click on the horizontal tab "Sidebar"
 
-    And I see field "Introduction Text"
-    And I should see an "textarea#edit-field-news-intro-text-0-value" element
-    And I should not see an "textarea#edit-field-news-intro-text-0-value.required" element
-
-    And I should see text matching "Social sharing"
-
+    And I click on the detail "Related links"
     And I see field "Show Related Content?"
     And I should see an "input#edit-field-show-related-content-value" element
     And I should not see an "input#edit-field-show-related-content-value.required" element
-
     And I should see text matching "Related links"
     And I should see the button "Add Related links" in the "content" region
 
+    And I click on the detail "Contact"
     And I see field "Show contact details"
     And I should see an "input#edit-field-landing-page-show-contact-value" element
     And I should not see an "input#edit-field-landing-page-show-contact-value.required" element
+    And I should see text matching "Contact us"
+    And I should see text matching "No Contact Us block added yet."
+    And I should see the button "Add Contact Us" in the "content" region
+
+    And I should see text matching "Social sharing"

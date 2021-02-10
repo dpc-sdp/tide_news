@@ -370,7 +370,7 @@ function tide_news_update_8005() {
       'description' => t('Date of the news being written.'),
     ],
     'field_related_links' => [
-      'description' => t('Related pages can be linked to prominently from the sidebar.'),
+      'description' => '',
     ],
     'field_show_social_sharing' => [
       'label' => t('Social sharing'),
@@ -426,8 +426,15 @@ function tide_news_update_8005() {
     // Sidebar.
     'field_show_related_content' => 0,
     'field_related_links' => [
-      'settings' => ['add_mode' => 'button'],
-      'weight' => 10,
+      'type' => 'entity_reference_paragraphs',
+      'settings' => [
+        'title' => t('Link'),
+        'title_plural' => t('Links'),
+        'edit_mode' => 'closed',
+        'add_mode' => 'button',
+        'form_display_mode' => 'default',
+        'default_paragraph_type' => '_none',
+      ],
     ],
     // Sidebar - Contact.
     'field_landing_page_show_contact' => 0,
@@ -505,13 +512,13 @@ function tide_news_update_8005() {
     'field_show_social_sharing',
   ];
 
-  $field_group['group_contact_us'] = _tide_news_new_field_group('Contact', 'fieldset', [
+  $field_group['group_contact_us'] = _tide_news_new_field_group('Contact', 'details', [
     'id' => '',
     'classes' => '',
     'formatter' => 'closed',
-    'description' => '',
+    'description' => t('Specific contact details - name, address, phone, email can be added in a block to the sidebar.'),
     'required_fields' => FALSE,
-    'open' => TRUE,
+    'open' => FALSE,
   ], 'content', 20, 'group_sidebar', []);
   $field_group['group_contact_us']['children'] = [
     'field_landing_page_show_contact',
@@ -520,8 +527,11 @@ function tide_news_update_8005() {
 
   if (isset($field_group['group_related_links'])) {
     $field_group['group_related_links'] = array_replace_recursive($field_group['group_related_links'], [
-      'format_type' => 'fieldset',
-      'format_settings' => ['open' => TRUE],
+      'format_type' => 'details',
+      'format_settings' => [
+        'open' => FALSE,
+        'description' => t('Related pages can be linked from this sidebar.'),
+      ],
       'parent_name' => 'group_sidebar',
       'region' => 'content',
       'weight' => 10,

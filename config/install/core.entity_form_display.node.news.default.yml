@@ -39,14 +39,14 @@ third_party_settings:
         - field_related_links
       parent_name: group_sidebar
       weight: 10
-      format_type: fieldset
+      format_type: details
       format_settings:
         id: ''
         classes: ''
         formatter: open
-        description: ''
+        description: 'Related pages can be linked from this sidebar.'
         required_fields: true
-        open: true
+        open: false
       label: 'Related links'
       region: content
     group_section_header:
@@ -154,14 +154,14 @@ third_party_settings:
       children:
         - field_landing_page_show_contact
         - field_landing_page_contact
-      format_type: fieldset
+      format_type: details
       format_settings:
         id: ''
         classes: ''
         formatter: closed
-        description: ''
+        description: 'Specific contact details - name, address, phone, email can be added in a block to the sidebar.'
         required_fields: false
-        open: true
+        open: false
       region: content
       weight: 20
 id: node.news.default
@@ -277,17 +277,11 @@ content:
       title: Link
       title_plural: Links
       edit_mode: closed
-      closed_mode: summary
-      autocollapse: none
       add_mode: button
       form_display_mode: default
       default_paragraph_type: _none
-      closed_mode_threshold: 0
-      features:
-        collapse_edit_all: collapse_edit_all
-        duplicate: duplicate
-    third_party_settings: {  }
-    type: paragraphs
+    third_party_settings: { }
+    type: entity_reference_paragraphs
     region: content
   field_show_content_rating:
     weight: 0
