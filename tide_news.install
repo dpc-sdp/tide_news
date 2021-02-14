@@ -36,6 +36,17 @@ function tide_news_install() {
 }
 
 /**
+ * Implements hook_update_dependencies().
+ */
+function tide_news_update_dependencies() {
+  return [
+    'tide_news' => [
+      8005 => ['tide_core' => 8044],
+    ],
+  ];
+}
+
+/**
  * Enable entity type/bundles for use with scheduled transitions.
  */
 function tide_news_update_8001() {
@@ -263,6 +274,99 @@ function tide_news_update_8004() {
 }
 
 /**
+ * Add Show Intro text field.
+ */
+function tide_news_update_8005() {
+  module_load_include('inc', 'tide_core', 'includes/helpers');
+  $form_display = EntityFormDisplay::load('node.news.default');
+  if (!$form_display) {
+    return;
+  }
+
+  $field_name = 'field_show_introduction_text';
+  $field_config = FieldConfig::loadByName('node', 'news', $field_name);
+  if (!$field_config) {
+    $field_config = FieldConfig::create([
+      'field_name' => $field_name,
+      'entity_type' => 'node',
+      'bundle' => 'news',
+      'label' => t('Introduction text'),
+      'description' => t('Introduction text is a brief summary of the page and displays under the page title. It is defaulted to be the same as the summary text. You can have a different introduction text if preferred.'),
+      'required' => TRUE,
+      'default_value' => [
+        ['value' => 1],
+      ],
+      'settings' => [
+        'on_label' => t('Display Introduction text'),
+        'off_label' => t('Turn off Introduction text'),
+      ],
+      'field_type' => 'boolean',
+    ]);
+
+    $uuid = _tide_retrieve_config_uuid($field_config->getConfigDependencyName());
+    if ($uuid) {
+      $field_config->set('uuid', $uuid);
+    }
+    $field_config->save();
+
+    if ($field_config && !$field_config->isNew()) {
+      $form_display->setComponent($field_name, [
+        'weight' => 15,
+        'settings' => [],
+        'third_party_settings' => [],
+        'type' => 'options_buttons',
+        'region' => 'content',
+      ]);
+      $form_display->save();
+    }
+  }
+}
+
+/**
+ * Set default value of Show Intro text field for existing news.
+ */
+function tide_news_update_8006(&$sandbox) {
+  if (!isset($sandbox['total'])) {
+    $count = \Drupal::entityQuery('node')
+      ->condition('type', 'news')
+      ->notExists('field_show_introduction_text')
+      ->count()
+      ->execute();
+    $sandbox['total'] = $count;
+    $sandbox['current'] = 0;
+    $sandbox['processed'] = 0;
+    $sandbox['#finished'] = $count ? 0 : 1;
+  }
+
+  $batch_size = 10;
+  $nids = \Drupal::entityQuery('node')
+    ->condition('type', 'news')
+    ->condition('nid', $sandbox['current'], '>')
+    ->notExists('field_show_introduction_text')
+    ->sort('nid', 'ASC')
+    ->range(0, $batch_size)
+    ->execute();
+  foreach ($nids as $nid) {
+    $sandbox['current'] = $nid;
+    try {
+      /** @var \Drupal\node\NodeInterface $node */
+      $node = Node::load($nid);
+      if ($node) {
+        $has_intro = $node->hasField('field_news_intro_text') && !($node->get('field_news_intro_text')->isEmpty());
+        $node->set('field_show_introduction_text', $has_intro);
+        $node->setNewRevision(FALSE);
+        $node->save();
+      }
+    }
+    catch (Exception $exception) {
+      watchdog_exception('tide_news', $exception);
+    }
+    $sandbox['processed']++;
+  }
+  $sandbox['#finished'] = $sandbox['total'] ? ($sandbox['processed'] / $sandbox['total']) : 1;
+}
+
+/**
  * Create a new field group.
  *
  * @param string $label
@@ -358,7 +462,7 @@ function _tide_news_new_field_group_tab(string $label, string $parent, array $se
 /**
  * Update node form for News content type.
  */
-function tide_news_update_8005() {
+function tide_news_update_8007() {
   // Install Select2 module as it is a new dependency.
   /** @var \Drupal\Core\Extension\ModuleInstallerInterface $installer */
   $installer = \Drupal::service('module_installer');
@@ -407,6 +511,7 @@ function tide_news_update_8005() {
     // Header.
     'title' => 0,
     'field_landing_page_summary' => 10,
+    'field_show_introduction_text' => 15,
     'field_news_intro_text' => 20,
     // Featured image.
     'field_featured_image' => [
@@ -481,6 +586,7 @@ function tide_news_update_8005() {
   $field_group['group_header']['children'] = [
     'title',
     'field_landing_page_summary',
+    'field_show_introduction_text',
     'field_news_intro_text',
   ];
 
