@@ -298,7 +298,7 @@ function tide_news_update_8005() {
       ],
       'settings' => [
         'on_label' => t('Display Introduction text'),
-        'off_label' => t('Turn off Introduction text'),
+        'off_label' => t('Hide Introduction text'),
       ],
       'field_type' => 'boolean',
     ]);
