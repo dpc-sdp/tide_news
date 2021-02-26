@@ -15,7 +15,6 @@ Feature: Fields for News content type
     And I should see an "textarea#edit-field-landing-page-summary-0-value" element
     And I should see an "textarea#edit-field-landing-page-summary-0-value.required" element
 
-    And I check the box "Add separate introduction text"
     And I see field "Introduction Text"
     And I should see an "textarea#edit-field-news-intro-text-0-value" element
     And I should not see an "textarea#edit-field-news-intro-text-0-value.required" element
