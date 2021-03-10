@@ -10,8 +10,8 @@ id: node.news.field_location
 field_name: field_location
 entity_type: node
 bundle: news
-label: 'Show related links?'
-description: 'Check this box if you want to show related links for this page.'
+label: Location
+description: 'Tag your news story with a Victorian region, if relevant.'
 required: false
 translatable: false
 default_value: {  }
