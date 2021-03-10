@@ -22,12 +22,16 @@ Feature: Fields for News content type
     And the "#edit-field-featured-image" element should contain "Featured Image"
     And I should see an "input#edit-field-featured-image-entity-browser-entity-browser-open-modal" element
 
+    And I scroll selector "#edit-group-content" into view
+    And I click on the horizontal tab "News content"
     And I see field "Body"
     And I should see a "textarea#edit-body-0-value" element
     And I should see a "textarea#edit-body-0-value.required" element
 
     And I should see text matching "Date"
 
+    And I scroll selector "#edit-group-author-detail" into view
+    And I click on the horizontal tab "Author detail"
     And I see field "Location"
 
     And I see field "Department"
