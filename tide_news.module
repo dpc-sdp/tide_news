@@ -40,6 +40,10 @@ function tide_news_form_node_form_alter(&$form, FormStateInterface $form_state, 
     return;
   }
 
+  if (isset($form['title']['widget'][0]['value']['#description'])) {
+    $form['title']['widget'][0]['value']['#description'] = t('Include a short unique title for your page and keywords.');
+  }
+
   // Hide the body summary subfield in favour of the new Summary field.
   if (!empty($form['body']['widget'])) {
     foreach (Element::children($form['body']['widget']) as $delta) {

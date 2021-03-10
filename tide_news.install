@@ -366,11 +366,24 @@ function tide_news_update_8005() {
 
   // Update the field instances.
   $update_field_config = [
+    'field_landing_page_summary' => [
+      'description' => t('Add short summary to introduce your news story. This summary will display on promotional cards or a card carousel.'),
+    ],
     'field_news_date' => [
       'description' => t('Date of the news being written.'),
     ],
+    'field_featured_image' => [
+      'description' => t("Feature images appear on your news story below the Date. One image can be added and must be 496px high x 818px wide."),
+    ],
+    'field_location' => [
+      'description' => t('Tag your news story with a Victorian region, if relevant.'),
+    ],
     'field_related_links' => [
       'description' => '',
+    ],
+    'field_show_related_content' => [
+      'label' => t('Show related links?'),
+      'description' => t('Check this box if you want to show related links for this page.'),
     ],
     'field_show_social_sharing' => [
       'label' => t('Social sharing'),

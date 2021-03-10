@@ -8,8 +8,8 @@ id: node.news.field_show_related_content
 field_name: field_show_related_content
 entity_type: node
 bundle: news
-label: 'Show Related Content?'
-description: 'Check this box if you want to show Related Content for this page.'
+label: 'Show related links?'
+description: 'Check this box if you want to show related links for this page.'
 required: false
 translatable: true
 default_value:

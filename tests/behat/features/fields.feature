@@ -44,7 +44,7 @@ Feature: Fields for News content type
     And I click on the horizontal tab "Sidebar"
 
     And I click on the detail "Related links"
-    And I see field "Show Related Content?"
+    And I see field "Show related links?"
     And I should see an "input#edit-field-show-related-content-value" element
     And I should not see an "input#edit-field-show-related-content-value.required" element
     And I should see text matching "Related links"
