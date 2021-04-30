@@ -9,6 +9,7 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\node\Entity\Node;
+use Drupal\paragraphs\Entity\ParagraphsType;
 
 /**
  * Implements hook_install().
@@ -364,6 +365,32 @@ function tide_news_update_8005() {
   $installer = \Drupal::service('module_installer');
   $installer->install(['select2']);
 
+  // Rename paragraph bundles.
+  $paragraph_updates = [
+    'featured_news' => [
+      'label' => t('Featured news'),
+      'description' => t('Display prominent cards linking to three recent news items.'),
+    ],
+  ];
+  foreach ($paragraph_updates as $bundle => $update) {
+    if (!is_array($update)) {
+      $update = ['label' => $update];
+    }
+    /** @var \Drupal\paragraphs\ParagraphsTypeInterface $type */
+    $type = ParagraphsType::load($bundle);
+    if ($type) {
+      $entity_type = $type->getEntityType();
+      if (isset($update['label'])) {
+        $label_key = $entity_type->getKey('label');
+        $type->set($label_key, $update['label']);
+      }
+      if (isset($update['description'])) {
+        $type->set('description', $update['description']);
+      }
+      $type->save();
+    }
+  }
+
   // Update the field instances.
   $update_field_config = [
     'field_landing_page_summary' => [
@@ -566,4 +593,20 @@ function tide_news_update_8005() {
   }
 
   $form_display->save();
+}
+
+/**
+ * Change icon of Featured news paragraph type.
+ */
+function tide_news_update_8006() {
+  module_load_include('inc', 'tide_core', 'includes/helpers');
+  $icon_dir = drupal_get_path('module', 'tide_news') . DIRECTORY_SEPARATOR . 'icons';
+
+  $paragraphs = [
+    'featured_news',
+  ];
+  foreach ($paragraphs as $paragraph_type_id) {
+    $icon_filename = $icon_dir . DIRECTORY_SEPARATOR . $paragraph_type_id . '.svg';
+    _tide_set_paragraph_type_icon($paragraph_type_id, $icon_filename);
+  }
 }
