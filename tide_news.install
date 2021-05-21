@@ -485,7 +485,8 @@ function tide_news_update_8005() {
       'weight' => 30,
     ],
     // General.
-    'field_show_content_rating' => ['weight' => 0],
+    'field_topic' => ['weight' => 0],
+    'field_show_content_rating' => ['weight' => 1],
   ];
 
   // Use Select2 for Location and Department field.
