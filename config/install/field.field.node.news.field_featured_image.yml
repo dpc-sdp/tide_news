@@ -10,7 +10,7 @@ field_name: field_featured_image
 entity_type: node
 bundle: news
 label: 'Featured Image'
-description: 'Add Featured Image for this page.'
+description: 'Feature images appear on your news story below the Date. One image can be added and must be 496px high x 818px wide.'
 required: false
 translatable: true
 default_value: {  }

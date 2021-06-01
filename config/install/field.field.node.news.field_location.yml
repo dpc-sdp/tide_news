@@ -11,7 +11,7 @@ field_name: field_location
 entity_type: node
 bundle: news
 label: Location
-description: ''
+description: 'Tag your news story with a Victorian region, if relevant.'
 required: false
 translatable: false
 default_value: {  }

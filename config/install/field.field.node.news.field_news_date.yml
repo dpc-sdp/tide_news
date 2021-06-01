@@ -11,7 +11,7 @@ field_name: field_news_date
 entity_type: node
 bundle: news
 label: Date
-description: ''
+description: 'Date of the news being written.'
 required: true
 translatable: false
 default_value:
