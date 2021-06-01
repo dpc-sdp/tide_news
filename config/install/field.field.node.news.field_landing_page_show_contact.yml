@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_show_related_content
+    - field.storage.node.field_landing_page_show_contact
     - node.type.news
-id: node.news.field_show_related_content
-field_name: field_show_related_content
+id: node.news.field_landing_page_show_contact
+field_name: field_landing_page_show_contact
 entity_type: node
 bundle: news
-label: 'Show related links?'
-description: 'Check this box if you want to show related links for this page.'
+label: 'Show contact details'
+description: ''
 required: false
 translatable: true
 default_value:
