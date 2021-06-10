@@ -5,7 +5,10 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "dpc-sdp/tide_core": "^2.0.10",
-        "dpc-sdp/tide_media": "^1.2.5"
+        "dpc-sdp/tide_media": "^1.2.5",
+        "drupal/select2": "1.7",
+        "oomphinc/composer-installers-extender": "^2.0",
+        "select2/select2": "^4.0"
     },
     "suggest": {
         "dpc-sdp/tide_api:^1.2.6": "Allows to use Drupal in headless mode",
@@ -16,5 +19,17 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "installer-paths": {
+            "docroot/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
+            ]
+        },
+        "installer-types": ["bower-asset", "npm-asset"]
     }
 }
