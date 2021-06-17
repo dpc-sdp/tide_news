@@ -119,6 +119,9 @@ function tide_news_update_8002() {
  * Migrate body summary to the new Summary field.
  */
 function tide_news_update_8003(&$sandbox) {
+  $sandbox['#finished'] = 1;
+  return;
+
   if (!isset($sandbox['total'])) {
     $count = \Drupal::entityQuery('node')
       ->condition('type', 'news')
