@@ -7,7 +7,7 @@
         "dpc-sdp/tide_core": "^2.0.10",
         "dpc-sdp/tide_media": "^1.2.5",
         "drupal/select2": "1.7",
-        "oomphinc/composer-installers-extender": "^1.1",
+        "oomphinc/composer-installers-extender": "^2.0",
         "select2/select2": "^4.0"
     },
     "suggest": {
