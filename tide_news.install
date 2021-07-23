@@ -130,7 +130,7 @@ function tide_news_update_8003(&$sandbox) {
     $sandbox['#finished'] = $count ? 0 : 1;
   }
 
-  $batch_size = 10;
+  $batch_size = 100;
   $nids = \Drupal::entityQuery('node')
     ->condition('type', 'news')
     ->condition('nid', $sandbox['current'], '>')
