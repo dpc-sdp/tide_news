@@ -121,7 +121,7 @@ function tide_news_update_8003(&$sandbox) {
   if (!isset($sandbox['total'])) {
     $count = \Drupal::entityQuery('node')
       ->condition('type', 'news')
-      ->exists('body.summary')
+      ->condition('body.summary', '', '<>')
       ->count()
       ->execute();
     $sandbox['total'] = $count;
@@ -134,7 +134,7 @@ function tide_news_update_8003(&$sandbox) {
   $nids = \Drupal::entityQuery('node')
     ->condition('type', 'news')
     ->condition('nid', $sandbox['current'], '>')
-    ->exists('body.summary')
+    ->condition('body.summary', '', '<>')
     ->sort('nid', 'ASC')
     ->range(0, $batch_size)
     ->execute();
