@@ -21,6 +21,7 @@ function tide_news_install() {
     $bundles = $config->get('bundles');
     if ($bundles) {
       foreach ($bundles as $bundle) {
+        $enabled_bundles = [];
         $enabled_bundles[] = $bundle['bundle'];
       }
       if (!in_array('news', $enabled_bundles)) {
@@ -45,6 +46,7 @@ function tide_news_update_8001() {
     $bundles = $config->get('bundles');
     if ($bundles) {
       foreach ($bundles as $bundle) {
+        $enabled_bundles = [];
         $enabled_bundles[] = $bundle['bundle'];
       }
       if (!in_array('news', $enabled_bundles)) {
