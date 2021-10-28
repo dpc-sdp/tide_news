@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.news.body
     - field.field.node.news.field_featured_image
     - field.field.node.news.field_landing_page_contact
+    - field.field.node.news.field_landing_page_nav_title
     - field.field.node.news.field_landing_page_show_contact
     - field.field.node.news.field_landing_page_summary
     - field.field.node.news.field_location
@@ -16,7 +17,9 @@ dependencies:
     - field.field.node.news.field_related_links
     - field.field.node.news.field_show_content_rating
     - field.field.node.news.field_show_related_content
+    - field.field.node.news.field_show_site_section_nav
     - field.field.node.news.field_show_social_sharing
+    - field.field.node.news.field_show_topic_term_and_tags
     - field.field.node.news.field_tags
     - field.field.node.news.field_topic
     - node.type.news
@@ -136,6 +139,7 @@ third_party_settings:
       label: Sidebar
       parent_name: group_section_sidebar
       children:
+        - group_site_section_navigation
         - group_related_links
         - group_contact_us
         - field_show_social_sharing
@@ -164,6 +168,22 @@ third_party_settings:
         open: false
       region: content
       weight: 20
+    group_site_section_navigation:
+      children:
+        - field_show_site_section_nav
+        - field_landing_page_nav_title
+      parent_name: group_sidebar
+      weight: 0
+      format_type: details
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: true
+      label: 'Site-section Navigation'
 id: node.news.default
 targetEntityType: node
 bundle: news
@@ -211,6 +231,14 @@ content:
       default_paragraph_type: _none
     third_party_settings: {  }
     type: entity_reference_paragraphs
+    region: content
+  field_landing_page_nav_title:
+    weight: 20
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_landing_page_show_contact:
     weight: 0
@@ -284,7 +312,7 @@ content:
     type: entity_reference_paragraphs
     region: content
   field_show_content_rating:
-    weight: 1
+    weight: 2
     settings:
       display_label: true
     third_party_settings: {  }
@@ -297,11 +325,25 @@ content:
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
+  field_show_site_section_nav:
+    weight: 19
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_show_social_sharing:
     weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
+  field_show_topic_term_and_tags:
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_tags:
     weight: 18

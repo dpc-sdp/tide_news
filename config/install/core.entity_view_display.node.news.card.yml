@@ -5,12 +5,15 @@ dependencies:
     - core.entity_view_mode.node.card
     - field.field.node.news.body
     - field.field.node.news.field_featured_image
+    - field.field.node.news.field_landing_page_nav_title
     - field.field.node.news.field_metatags
     - field.field.node.news.field_news_date
     - field.field.node.news.field_news_intro_text
     - field.field.node.news.field_related_links
     - field.field.node.news.field_show_related_content
+    - field.field.node.news.field_show_site_section_nav
     - field.field.node.news.field_show_social_sharing
+    - field.field.node.news.field_show_topic_term_and_tags
     - field.field.node.news.field_tags
     - field.field.node.news.field_topic
     - node.type.news
@@ -58,12 +61,15 @@ content:
     third_party_settings: {  }
 hidden:
   field_featured_image: true
+  field_landing_page_nav_title: true
   field_metatags: true
   field_news_intro_text: true
   field_related_links: true
   field_show_content_rating: true
   field_show_related_content: true
+  field_show_site_section_nav: true
   field_show_social_sharing: true
+  field_show_topic_term_and_tags: true
   field_tags: true
   field_topic: true
   links: true
