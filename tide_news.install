@@ -653,7 +653,7 @@ function tide_news_page_update_8007() {
         'open' => FALSE,
       ],
     ];
-    $entity_form_display->setThirdPartySetting('field_group', 'group_content', $field_group['group_content']);
+    $entity_form_display->setThirdPartySetting('field_group', 'group_site_section_navigation', $field_group['group_site_section_navigation']);
     $components = $entity_form_display->getComponents();
     if (isset($components['group_sidebar'])) {
       $group_sidebar = $entity_form_display->get('group_sidebar');
