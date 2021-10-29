@@ -643,7 +643,8 @@ function tide_news_page_update_8007() {
       'type' => 'boolean_checkbox',
       'region' => 'content',
     ]);
-    // Header section.
+    // Update the field groups.
+    $field_group = $entity_form_display->getThirdPartySettings('field_group');
     $field_group['group_site_section_navigation'] = [
       'children' => [
         'field_show_site_section_nav',
