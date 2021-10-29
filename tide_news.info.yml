@@ -46,5 +46,6 @@ config_devel:
     - field.storage.news.field_news_intro_text
   optional:
     - field.field.node.news.field_show_content_rating
+    - field.storage.node.field_show_site_section_nav
     - jsonapi_extras.jsonapi_resource_config.node--news
     - simple_sitemap.bundle_settings.node.news
