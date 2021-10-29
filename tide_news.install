@@ -624,7 +624,6 @@ function tide_news_page_update_8007() {
     $entity_form_display->setComponent('field_landing_page_nav_title', [
       'weight' => 20,
       'settings' => ['size' => 60, 'placeholder' => ''],
-      'required' => TRUE,
       'third_party_settings' => [],
       'type' => 'string_textfield',
       'region' => 'content',

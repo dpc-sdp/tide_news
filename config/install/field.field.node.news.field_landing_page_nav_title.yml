@@ -10,7 +10,7 @@ entity_type: node
 bundle: news
 label: 'Site-section Navigation Title'
 description: ''
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
