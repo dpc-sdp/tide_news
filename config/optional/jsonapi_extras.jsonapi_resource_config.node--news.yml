@@ -1,4 +1,3 @@
-uuid: 4903bf5c-e053-4a5e-abb7-345e262d7c63
 langcode: en
 status: true
 dependencies:
@@ -205,6 +204,14 @@ resourceFields:
     disabled: false
     advancedOptionsIcon: ''
     enhancer_label: ''
+  field_landing_page_nav_title:
+    fieldName: field_landing_page_nav_title
+    publicName: field_landing_page_nav_title
+    enhancer:
+      id: ''
+    disabled: false
+    advancedOptionsIcon: ''
+    enhancer_label: ''
   field_location:
     fieldName: field_location
     publicName: field_location
@@ -283,9 +290,25 @@ resourceFields:
     disabled: false
     advancedOptionsIcon: ''
     enhancer_label: ''
+  field_show_site_section_nav:
+    fieldName: field_show_site_section_nav
+    publicName: field_show_site_section_nav
+    enhancer:
+      id: ''
+    disabled: false
+    advancedOptionsIcon: ''
+    enhancer_label: ''
   field_show_social_sharing:
     fieldName: field_show_social_sharing
     publicName: field_show_social_sharing
+    enhancer:
+      id: ''
+    disabled: false
+    advancedOptionsIcon: ''
+    enhancer_label: ''
+  field_show_topic_term_and_tags:
+    fieldName: field_show_topic_term_and_tags
+    publicName: field_show_topic_term_and_tags
     enhancer:
       id: ''
     disabled: false
