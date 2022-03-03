@@ -9,8 +9,8 @@ field_name: field_landing_page_nav_title
 entity_type: node
 bundle: news
 label: 'Site-section Navigation Title'
-description: ''
-required: true
+description: 'Add a site-section navigation on the right-hand side of your site.'
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''

@@ -590,7 +590,7 @@ function tide_news_update_8006() {
 function tide_news_page_update_8007() {
   // Install configs.
   module_load_include('inc', 'tide_core', 'includes/helpers');
-  $config_location = [drupal_get_path('module', 'tide_news') . '/config/install'];
+  $config_location = [drupal_get_path('module', 'tide_news') . '/config/optional'];
   // Check if field already exported to config/sync.
   $config_read = _tide_read_config('field.storage.node.field_show_site_section_nav', $config_location, TRUE);
   $storage = \Drupal::entityTypeManager()->getStorage('field_storage_config');
@@ -600,6 +600,7 @@ function tide_news_page_update_8007() {
     $config_entity->save();
   }
 
+  $config_location = [drupal_get_path('module', 'tide_news') . '/config/install'];
   $configs = [
     'field.field.node.news.field_landing_page_nav_title' => 'field_config',
     'field.field.node.news.field_show_site_section_nav' => 'field_config',
