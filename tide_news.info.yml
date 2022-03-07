@@ -44,7 +44,6 @@ config_devel:
     - field.field.node.news.field_topic
     - field.storage.node.field_news_date
     - field.storage.news.field_news_intro_text
-    - field.storage.node.field_show_site_section_nav
   optional:
     - field.field.node.news.field_show_content_rating
     - jsonapi_extras.jsonapi_resource_config.node--news

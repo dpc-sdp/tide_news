@@ -54,7 +54,6 @@ Feature: Fields for News content type
     And I should see an "input#edit-field-show-site-section-nav-value" element
     And I should not see an "input#edit-field-show-site-section-nav-value.required" element
     And I should see an "input#edit-field-landing-page-nav-title-0-value" element
-    And I should see an "input#edit-field-landing-page-nav-title-0-value.required" element
 
     And I click on the detail "Related links"
     And I see field "Show related links?"
