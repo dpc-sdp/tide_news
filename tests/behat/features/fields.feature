@@ -44,8 +44,16 @@ Feature: Fields for News content type
     And I should see an "input#edit-field-topic-0-target-id" element
     And I should see an "input#edit-field-topic-0-target-id.required" element
 
+    And I should see an "input#edit-field-show-topic-term-and-tags-value" element
+    And I should not see an "input#edit-field-show-topic-term-and-tags-value.required" element
+
     And I scroll selector "#edit-group-sidebar" into view
     And I click on the horizontal tab "Sidebar"
+
+    And I see field "Show Site-section navigation?"
+    And I should see an "input#edit-field-show-site-section-nav-value" element
+    And I should not see an "input#edit-field-show-site-section-nav-value.required" element
+    And I should see an "input#edit-field-landing-page-nav-title-0-value" element
 
     And I click on the detail "Related links"
     And I see field "Show related links?"

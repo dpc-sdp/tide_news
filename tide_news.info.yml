@@ -28,6 +28,7 @@ config_devel:
     - field.field.node.news.body
     - field.field.node.news.field_featured_image
     - field.field.node.news.field_landing_page_contact
+    - field.field.node.news.field_landing_page_nav_title
     - field.field.node.news.field_landing_page_show_contact
     - field.field.node.news.field_landing_page_summary
     - field.field.node.news.field_metatags
@@ -35,7 +36,9 @@ config_devel:
     - field.field.node.news.field_news_intro_text
     - field.field.node.news.field_show_introduction_text
     - field.field.node.news.field_show_related_content
+    - field.field.node.news.field_show_site_section_nav
     - field.field.node.news.field_show_social_sharing
+    - field.field.node.news.field_show_topic_term_and_tags
     - field.field.node.news.field_related_links
     - field.field.node.news.field_tags
     - field.field.node.news.field_topic

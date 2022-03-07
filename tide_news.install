@@ -578,3 +578,204 @@ function tide_news_update_8005() {
  */
 function tide_news_update_8006() {
 }
+
+/**
+ * Add new fields to news content type.
+ *
+ * New fields as below
+ * - field_landing_page_nav_title
+ * - field_show_site_section_nav
+ * - field_show_topic_term_and_tags.
+ */
+function tide_news_page_update_8007() {
+  // Install configs.
+  module_load_include('inc', 'tide_core', 'includes/helpers');
+  $config_location = [drupal_get_path('module', 'tide_news') . '/config/install'];
+  $configs = [
+    'field.field.node.news.field_landing_page_nav_title' => 'field_config',
+    'field.field.node.news.field_show_site_section_nav' => 'field_config',
+    'field.field.node.news.field_show_topic_term_and_tags' => 'field_config',
+  ];
+
+  foreach ($configs as $config => $type) {
+    $config_read = _tide_read_config($config, $config_location, TRUE);
+    $storage = \Drupal::entityTypeManager()->getStorage($type);
+    $config_entity = $storage->createFromStorageRecord($config_read);
+    $config_entity->save();
+  }
+
+  // Updates entity_form_display.
+  $entity_form_display = \Drupal::entityTypeManager()
+    ->getStorage('entity_form_display')
+    ->load('node.news.default');
+  if ($entity_form_display) {
+    $entity_form_display->setComponent('field_show_content_rating', [
+      'weight' => 2,
+    ]);
+    $entity_form_display->setComponent('field_landing_page_nav_title', [
+      'weight' => 20,
+      'settings' => ['size' => 60, 'placeholder' => ''],
+      'third_party_settings' => [],
+      'type' => 'string_textfield',
+      'region' => 'content',
+    ]);
+    $entity_form_display->setComponent('field_show_site_section_nav', [
+      'weight' => 19,
+      'settings' => ['display_label' => TRUE],
+      'third_party_settings' => [],
+      'type' => 'boolean_checkbox',
+      'region' => 'content',
+    ]);
+    $entity_form_display->setComponent('field_show_topic_term_and_tags', [
+      'weight' => 1,
+      'settings' => ['display_label' => TRUE],
+      'third_party_settings' => [],
+      'type' => 'boolean_checkbox',
+      'region' => 'content',
+    ]);
+    // Update the field groups.
+    $field_group = $entity_form_display->getThirdPartySettings('field_group');
+    $field_group['group_site_section_navigation'] = [
+      'children' => [
+        'field_show_site_section_nav',
+        'field_landing_page_nav_title',
+      ],
+      'parent_name' => 'group_sidebar',
+      'label' => 'Site-section Navigation',
+      'weight' => 0,
+      'format_type' => 'details',
+      'region' => 'content',
+      'format_settings' => [
+        'show_empty_fields' => FALSE,
+        'required_fields' => TRUE,
+        'id' => '',
+        'classes' => '',
+        'description' => '',
+        'open' => FALSE,
+      ],
+    ];
+    $entity_form_display->setThirdPartySetting('field_group', 'group_site_section_navigation', $field_group['group_site_section_navigation']);
+    $components = $entity_form_display->getComponents();
+    if (isset($components['group_sidebar'])) {
+      $group_sidebar = $entity_form_display->get('group_sidebar');
+      $group_sidebar['group_sidebar']['children'][] = 'group_site_section_navigation';
+      $entity_form_display->setThirdPartySetting('field_group', 'group_content', $group_sidebar['group_sidebar']);
+    }
+  }
+  $entity_form_display->save();
+
+  // Updates entity_view_display.
+  $entity_view_display = \Drupal::entityTypeManager()
+    ->getStorage('entity_view_display')
+    ->load('node.news.default');
+  if ($entity_view_display) {
+    $entity_view_display->setComponent('field_landing_page_nav_title', [
+      'weight' => 14,
+      'label' => 'above',
+      'settings' => ['link_to_entity' => FALSE],
+      'third_party_settings' => [],
+      'type' => 'string',
+      'region' => 'content',
+    ]);
+    $entity_view_display->setComponent('field_show_site_section_nav', [
+      'weight' => 12,
+      'label' => 'above',
+      'settings' => [
+        'format' => 'default',
+        'format_custom_false' => '',
+        'format_custom_true' => '',
+      ],
+      'third_party_settings' => [],
+      'type' => 'boolean',
+      'region' => 'content',
+    ]);
+    $entity_view_display->setComponent('field_show_topic_term_and_tags', [
+      'weight' => 13,
+      'label' => 'above',
+      'settings' => [
+        'format' => 'default',
+        'format_custom_false' => '',
+        'format_custom_true' => '',
+      ],
+      'third_party_settings' => [],
+      'type' => 'boolean',
+      'region' => 'content',
+    ]);
+  }
+  $entity_view_display->save();
+
+  $entity_view_display = \Drupal::entityTypeManager()
+    ->getStorage('entity_view_display')
+    ->load('node.news.card');
+  if ($entity_view_display) {
+    $components = $entity_form_display->getComponents();
+    $hidden = $entity_view_display->get('hidden');
+    $hidden['field_landing_page_nav_title'] = TRUE;
+    $hidden['field_show_site_section_nav'] = TRUE;
+    $hidden['field_show_topic_term_and_tags'] = TRUE;
+    $entity_view_display->set('hidden', $hidden);
+    $entity_view_display->save();
+  }
+
+  $entity_view_display = \Drupal::entityTypeManager()
+    ->getStorage('entity_view_display')
+    ->load('node.news.featured_card');
+  if ($entity_view_display) {
+    $components = $entity_form_display->getComponents();
+    $hidden = $entity_view_display->get('hidden');
+    $hidden['field_landing_page_nav_title'] = TRUE;
+    $hidden['field_show_site_section_nav'] = TRUE;
+    $hidden['field_show_topic_term_and_tags'] = TRUE;
+    $entity_view_display->set('hidden', $hidden);
+    $entity_view_display->save();
+  }
+
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('jsonapi_extras.jsonapi_resource_config.node--news');
+
+  $content = $config->get('resourceFields');
+  if (!isset($content['field_landing_page_nav_title'])) {
+    $content['field_landing_page_nav_title'] = [
+      'fieldName' => 'field_landing_page_nav_title',
+      'publicName' => 'field_landing_page_nav_title',
+      'enhancer' => [
+        'id' => '',
+      ],
+      'disabled' => FALSE,
+      'advancedOptionsIcon' => '',
+      'enhancer_label' => '',
+    ];
+
+    $config->set('resourceFields', $content);
+  }
+  if (!isset($content['field_show_site_section_nav'])) {
+    $content['field_show_site_section_nav'] = [
+      'fieldName' => 'field_show_site_section_nav',
+      'publicName' => 'field_show_site_section_nav',
+      'enhancer' => [
+        'id' => '',
+      ],
+      'disabled' => FALSE,
+      'advancedOptionsIcon' => '',
+      'enhancer_label' => '',
+    ];
+
+    $config->set('resourceFields', $content);
+  }
+  if (!isset($content['field_show_topic_term_and_tags'])) {
+    $content['field_show_topic_term_and_tags'] = [
+      'fieldName' => 'field_show_topic_term_and_tags',
+      'publicName' => 'field_show_topic_term_and_tags',
+      'enhancer' => [
+        'id' => '',
+      ],
+      'disabled' => FALSE,
+      'advancedOptionsIcon' => '',
+      'enhancer_label' => '',
+    ];
+
+    $config->set('resourceFields', $content);
+  }
+
+  $config->save();
+}
