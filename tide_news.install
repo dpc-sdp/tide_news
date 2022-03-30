@@ -587,7 +587,7 @@ function tide_news_update_8006() {
  * - field_show_site_section_nav
  * - field_show_topic_term_and_tags.
  */
-function tide_news_page_update_8007() {
+function tide_news_update_8007() {
   // Install configs.
   module_load_include('inc', 'tide_core', 'includes/helpers');
   $config_location = [drupal_get_path('module', 'tide_news') . '/config/install'];
