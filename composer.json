@@ -1,35 +1,38 @@
 {
-    "name": "dpc-sdp/tide_news",
-    "description": "News content type and related configuration for Tide Drupal 8 distribution",
-    "type": "drupal-module",
-    "license": "GPL-2.0-or-later",
-    "require": {
-        "dpc-sdp/tide_core": "^3.0.0",
-        "dpc-sdp/tide_media": "^3.0.0",
-        "drupal/select2": "^1.7",
-        "oomphinc/composer-installers-extender": "^2.0",
-        "select2/select2": "^4.0"
+  "description": "News content type and related configuration for Tide Drupal 8 distribution",
+  "extra": {
+    "installer-paths": {
+      "docroot/libraries/{$name}": [
+        "type:drupal-library",
+        "type:bower-asset",
+        "type:npm-asset"
+      ]
     },
-    "suggest": {
-        "dpc-sdp/tide_api:^3.0.0": "Allows to use Drupal in headless mode",
-        "dpc-sdp/tide_webform:^3.0.0": "Allows to use questionnaires"
-    },
-    "repositories": {
-        "drupal": {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "extra": {
-        "installer-paths": {
-            "docroot/libraries/{$name}": [
-                "type:drupal-library",
-                "type:bower-asset",
-                "type:npm-asset"
-            ]
-        },
-        "installer-types": ["bower-asset", "npm-asset"]
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ]
+  },
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "name": "dpc-sdp/tide_news",
+  "prefer-stable": true,
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
     }
+  },
+  "require": {
+    "dpc-sdp/tide_core": "dev-reference",
+    "dpc-sdp/tide_media": "dev-reference",
+    "drupal/select2": "^1.7",
+    "oomphinc/composer-installers-extender": "^2.0",
+    "select2/select2": "^4.0"
+  },
+  "suggest": {
+    "dpc-sdp/tide_api:^3.0.0": "Allows to use Drupal in headless mode",
+    "dpc-sdp/tide_webform:^3.0.0": "Allows to use questionnaires"
+  },
+  "type": "drupal-module"
 }
