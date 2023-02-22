@@ -779,3 +779,25 @@ function tide_news_update_8007() {
 
   $config->save();
 }
+
+/**
+ * Use Select2 for Location and Department field.
+ */
+function tide_news_update_8008() {
+  if (\Drupal::moduleHandler()->moduleExists('select2')) {
+    $config_factory = \Drupal::configFactory();
+    $config = $config_factory->getEditable('core.entity_form_display.node.news.default');
+    $content = $config->get('content');
+    foreach (['field_location', 'field_node_department'] as $select2_field) {
+      if (isset($content[$select2_field])) {
+        $content[$select2_field]['type'] = 'select2_entity_reference';
+        $content[$select2_field]['settings'] = [
+          'match_operator' => 'CONTAINS',
+          'match_limit' => 10,
+          'autocomplete' => FALSE,
+          'width' => '100%',
+        ];
+      }
+    }
+  }
+}
