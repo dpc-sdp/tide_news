@@ -799,5 +799,7 @@ function tide_news_update_8008() {
         ];
       }
     }
+    $config->set('content', $content);
+    $config->save();
   }
 }
