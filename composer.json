@@ -8,7 +8,7 @@
         "dpc-sdp/tide_media": "^3.0.0",
         "drupal/select2": "^1.7",
         "oomphinc/composer-installers-extender": "^2.0",
-        "select2/select2": "^4.0"
+        "npm-asset/select2": "^4.0"
     },
     "suggest": {
         "dpc-sdp/tide_api:^3.0.0": "Allows to use Drupal in headless mode",
