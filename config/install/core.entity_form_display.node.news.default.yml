@@ -261,14 +261,15 @@ content:
     type: string_textarea
     region: content
   field_location:
+    type: select2_entity_reference
     weight: 0
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: { }
-    type: entity_reference_autocomplete
     region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
   field_metatags:
     weight: 22
     settings:
@@ -291,14 +292,15 @@ content:
     type: string_textarea
     region: content
   field_node_department:
+    type: select2_entity_reference
     weight: 10
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: { }
-    type: entity_reference_autocomplete
     region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
   field_related_links:
     weight: 10
     settings:
