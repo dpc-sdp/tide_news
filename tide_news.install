@@ -5,6 +5,8 @@
  * Tide News module install file..
  */
 
+use Drupal\user\Entity\Role;
+
 /**
  * Implements hook_install().
  */
@@ -29,6 +31,7 @@ function tide_news_install() {
       $config->set('bundles', $bundles)->save();
     }
   }
+  _tide_alert_assign_necessary_permissions();
 }
 
 /**
@@ -83,7 +86,9 @@ function _tide_alert_assign_necessary_permissions() {
   ];
 
   foreach ($role_permissions as $role => $permissions) {
-    user_role_grant_permissions($role, $permissions);
+    if (Role::load($role) && !is_null(Role::load($role))) {
+      user_role_grant_permissions(Role::load($role)->id(), $permissions);
+    }
   }
 
 }
