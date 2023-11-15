@@ -11,38 +11,44 @@ use Drupal\workflows\Entity\Workflow;
 class TideNewsOperation {
 
   /**
-   * Enable editorial workflow and shceduled transitions.
+   * Add news content type to editorial workflows.
    */
-  public static function enableNecessaryModules() {
+  public static function addToWorkflows() {
     // Enable Editorial workflow if workflow module is enabled.
-    $moduleHandler = \Drupal::service('module_handler');
-    if ($moduleHandler->moduleExists('workflows')) {
-      $editorial_workflow = Workflow::load('editorial');
-      if ($editorial_workflow) {
-        $editorial_workflow->getTypePlugin()->addEntityTypeAndBundle('node', 'news');
-        $editorial_workflow->save();
-      }
+    if (!(\Drupal::moduleHandler()->moduleExists('workflows'))) {
+      return;
     }
+    $editorial_workflow = Workflow::load('editorial');
+    if ($editorial_workflow) {
+      $editorial_workflow->getTypePlugin()->addEntityTypeAndBundle('node', 'news');
+      $editorial_workflow->save();
+    }
+  }
 
+  /**
+   * Add news content type shceduled transitions.
+   */
+  public static function addToShceduledTransitions() {
     // Enable entity type/bundles for use with scheduled transitions.
-    if (\Drupal::moduleHandler()->moduleExists('scheduled_transitions')) {
-      $config_factory = \Drupal::configFactory();
-      $config = $config_factory->getEditable('scheduled_transitions.settings');
-      $bundles = $config->get('bundles');
-      if ($bundles) {
-        foreach ($bundles as $bundle) {
-          $enabled_bundles = [];
-          $enabled_bundles[] = $bundle['bundle'];
-        }
-        if (!in_array('news', $enabled_bundles)) {
-          $bundles[] = ['entity_type' => 'node', 'bundle' => 'news'];
-          $config->set('bundles', $bundles)->save();
-        }
+    if (!(\Drupal::moduleHandler()->moduleExists('scheduled_transitions'))) {
+      return;
+    }
+    $config_factory = \Drupal::configFactory();
+    $config = $config_factory->getEditable('scheduled_transitions.settings');
+    $bundles = $config->get('bundles');
+    if ($bundles) {
+      foreach ($bundles as $bundle) {
+        $enabled_bundles = [];
+        $enabled_bundles[] = $bundle['bundle'];
       }
-      else {
+      if (!in_array('news', $enabled_bundles)) {
         $bundles[] = ['entity_type' => 'node', 'bundle' => 'news'];
         $config->set('bundles', $bundles)->save();
       }
+    }
+    else {
+      $bundles[] = ['entity_type' => 'node', 'bundle' => 'news'];
+      $config->set('bundles', $bundles)->save();
     }
   }
 

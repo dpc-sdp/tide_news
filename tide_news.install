@@ -11,6 +11,6 @@ use Drupal\tide_news\TideNewsOperation;
  * Implements hook_install().
  */
 function tide_news_install() {
-  TideNewsOperation::enableNecessaryModules();
-  TideNewsOperation::assignNecessaryPermissions();
+  TideNewsOperation::addToWorkflows();
+  TideNewsOperation::addToShceduledTransitions();
 }
