@@ -1,5 +1,5 @@
 {
-  "description": "News content type and related configuration for Tide Drupal 8 distribution",
+  "description": "News content type and related configuration for Tide Drupal 10 distribution",
   "extra": {
     "installer-paths": {
       "docroot/libraries/{$name}": [
@@ -24,7 +24,7 @@
     },
     "drupal": {
       "type": "composer",
-      "url": "https://packages.drupal.org/8"
+      "url": "https://packages.drupal.org/10"
     }
   },
   "require": {
@@ -35,8 +35,8 @@
     "oomphinc/composer-installers-extender": "^2.0"
   },
   "suggest": {
-    "dpc-sdp/tide_api:^3.0.0": "Allows to use Drupal in headless mode",
-    "dpc-sdp/tide_webform:^3.0.0": "Allows to use questionnaires"
+    "dpc-sdp/tide_api:^4.0.0": "Allows to use Drupal in headless mode",
+    "dpc-sdp/tide_webform:^4.0.0": "Allows to use questionnaires"
   },
   "type": "drupal-module"
 }
