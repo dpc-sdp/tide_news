@@ -12,6 +12,6 @@ use Drupal\tide_news\TideNewsOperation;
  */
 function tide_news_install() {
   TideNewsOperation::addToWorkflows();
-  TideNewsOperation::addToShceduledTransitions();
+  TideNewsOperation::addToScheduledTransitions();
   TideNewsOperation::assignNecessaryPermissions();
 }

@@ -28,7 +28,7 @@ class TideNewsOperation {
   /**
    * Add news content type shceduled transitions.
    */
-  public static function addToShceduledTransitions() {
+  public static function addToScheduledTransitions() {
     // Enable entity type/bundles for use with scheduled transitions.
     if (!(\Drupal::moduleHandler()->moduleExists('scheduled_transitions'))) {
       return;
