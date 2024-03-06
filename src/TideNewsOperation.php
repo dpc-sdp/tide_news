@@ -14,14 +14,14 @@ class TideNewsOperation {
    * Add news content type to editorial workflows.
    */
   public static function addToWorkflows() {
-    // Enable Editorial workflow if workflow module is enabled.
-    if (!(\Drupal::moduleHandler()->moduleExists('workflows'))) {
-      return;
-    }
-    $editorial_workflow = Workflow::load('editorial');
-    if ($editorial_workflow) {
-      $editorial_workflow->getTypePlugin()->addEntityTypeAndBundle('node', 'news');
-      $editorial_workflow->save();
+    $moduleHandler = \Drupal::service('module_handler');
+    if (!\Drupal::service('config.installer')->isSyncing() && $moduleHandler->moduleExists('workflows')) {
+      $editorial_workflow = Workflow::load('editorial');
+      if ($editorial_workflow) {
+        $editorial_workflow->getTypePlugin()
+          ->addEntityTypeAndBundle('node', 'news');
+        $editorial_workflow->save();
+      }
     }
   }
 
