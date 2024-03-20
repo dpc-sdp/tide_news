@@ -110,4 +110,12 @@ class TideNewsOperation {
     }
   }
 
+  /**
+   * Add default value to Content Category.
+   */
+  public static function addDefaultValueToContentCategory() {
+    \Drupal::moduleHandler()->loadInclude('tide_core', 'inc', 'includes/updates');
+    _tide_core_field_content_category_default_value('news', 'News article');
+  }
+
 }
