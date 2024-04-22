@@ -14,14 +14,14 @@ class TideNewsOperation {
    * Add news content type to editorial workflows.
    */
   public static function addToWorkflows() {
-    // Enable Editorial workflow if workflow module is enabled.
-    if (!(\Drupal::moduleHandler()->moduleExists('workflows'))) {
-      return;
-    }
-    $editorial_workflow = Workflow::load('editorial');
-    if ($editorial_workflow) {
-      $editorial_workflow->getTypePlugin()->addEntityTypeAndBundle('node', 'news');
-      $editorial_workflow->save();
+    $moduleHandler = \Drupal::service('module_handler');
+    if (!\Drupal::service('config.installer')->isSyncing() && $moduleHandler->moduleExists('workflows')) {
+      $editorial_workflow = Workflow::load('editorial');
+      if ($editorial_workflow) {
+        $editorial_workflow->getTypePlugin()
+          ->addEntityTypeAndBundle('node', 'news');
+        $editorial_workflow->save();
+      }
     }
   }
 
@@ -108,6 +108,14 @@ class TideNewsOperation {
         user_role_grant_permissions(Role::load($role)->id(), $permissions);
       }
     }
+  }
+
+  /**
+   * Add default value to Content Category.
+   */
+  public static function addDefaultValueToContentCategory() {
+    \Drupal::moduleHandler()->loadInclude('tide_core', 'inc', 'includes/updates');
+    _tide_core_field_content_category_default_value('news', 'News article');
   }
 
 }
